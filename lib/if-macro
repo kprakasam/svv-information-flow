@@ -1,0 +1,14 @@
+let if = macro {
+  case {_ ($expr) { $body ...} } => {
+    return #{
+      vvalues.push($expr);
+      if (vvalues.peek()) {
+        $body ...
+        vvalues.pop();
+      }
+    }
+  }
+}
+
+let if = macro { \n  case {_ ($expr) { $body ...} } => { \n    return #{ \n      vvalues.push($expr); \n      if (vvalues.peek()) { \n        $body ...  \n        vvalues.pop(); \n      } \n    } \n  } \n}
+
